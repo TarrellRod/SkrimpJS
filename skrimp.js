@@ -5,6 +5,24 @@ window.skrimp = (function () {
 		}
 		this.length = els.length;
 	}
+	//__________UTIL______________
+
+	Skrimp.prototype.map = function(callback){
+		var results = [], i = 0;
+		for ( ; i< this.length; i++){
+			results.push(callback.call(this, this[i], i));
+		}
+		return results;
+	};
+
+	Skrimp.prototype.foreach(callback){
+		this.map(callback);
+		return this;
+	};
+
+
+
+
 	var skrimp = {
 		get: function(selector){
 			var els;
