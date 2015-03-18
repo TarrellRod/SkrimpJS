@@ -15,6 +15,23 @@ window.skrimp = (function () {
 		return results;
 	};
 
+	Skrimp.prototype.mapOne = function (callback){
+		var m = this.map(callback);
+		return m.length>1 ? m : m[0];
+	};
+
+	Skrimp.prototype.text = function(text){
+		if (typeof text !== "undefined"){
+			return this.foreach(function (el){
+				el.innerText = text;
+			});
+		} else {
+			return this.mapOne(function (el){
+				return el.innerText;
+			});
+		}
+	};
+
 	Skrimp.prototype.foreach(callback){
 		this.map(callback);
 		return this;
